@@ -1,0 +1,45 @@
+{% extends 'tools/base.html' %}
+{% load static %}
+
+{% block title %}{{product.name}}{% endblock title %}
+
+
+{% block header %}
+
+<body class="sub_page">
+    <div class="hero_area">
+        <!-- header section strats -->
+        {% include "tools/header.html" %}
+        <!-- end header section -->
+    </div>
+
+    {% endblock %}
+
+
+    <!-- nav section -->
+
+    <!-- end nav section -->
+
+    {% block content %}
+
+    <!-- place order section -->
+    <div class="container">
+        <div class="card align-items-center m-5">
+            <div class="card-body">
+                <h3>Your Order has been placed!..</h3>
+                <h4>THANK YOU</h4>
+                <div class="buttons mt-4 gap-3">
+                    <a href="{% url 'home' %}">
+                        <button class="btn btn-outline-dark">
+                            Home
+                        </button>
+                    </a>
+                </div>
+            </div>  
+        </div>        
+    </div>
+    
+    <!-- end place order section -->
+
+
+    {% endblock %}

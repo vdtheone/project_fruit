@@ -1,0 +1,54 @@
+{% extends 'tools/base.html' %}
+{% load static %}
+
+{% block title %}our fruit{% endblock title %}
+
+
+{% block header %}
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    {% include "tools/header.html" %}
+    <!-- end header section -->
+  </div>
+{% endblock %}
+
+  <!-- nav section -->
+  <!-- end nav section -->
+
+
+{% block content %}
+  <!-- fruit section -->
+
+  <section class="fruit_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <hr>
+        <h2>
+          Fresh Fruits
+        </h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="fruit_container">
+      {% for product in products %}
+        <div class="box">
+          <img src="{{ product.img.url }}" alt="">
+          <div class="link_box"> 
+            <h5>
+              <!-- Orange -->
+              {{product.name}}
+            </h5>
+            <a href="{% url 'product_view' product.id %}" id="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- end fruit section -->
+
+  {% endblock %}

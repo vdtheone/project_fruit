@@ -1,0 +1,49 @@
+{% extends 'tools/base.html' %}
+{% load static %}
+
+{% block title %}{{product.name}}{% endblock title %}
+
+
+{% block header %}
+
+<body class="sub_page">
+    <div class="hero_area">
+        <!-- header section strats -->
+        {% include "tools/header.html" %}
+        <!-- end header section -->
+    </div>
+
+    {% endblock %}
+
+
+    <!-- nav section -->
+
+    <!-- end nav section -->
+
+    {% block content %}
+
+    <!-- place order section -->
+    <div class="container">
+        <form action="{% url 'order_enrty' product_name.id %}" method="post">
+            {% csrf_token %}
+            <div class="card align-items-center m-5">
+                <div class="card-body">
+                    <h3>Name : {{product_name}} </h3>
+                    <h3>Price : ₹ {{price}}/- </h3>
+                    <h3>Quantity : {{hidden_quantity}} kg </h3>
+                    <input type="hidden" name="product_name" value="{{product_name}}">
+                    <input type="hidden" name="price" value="{{price}}">
+                    <input type="hidden" name="quantity" value="{{hidden_quantity}}">
+                    <div class="buttons mt-4 gap-3">
+                        <button class="btn btn-outline-dark">Place Order</button>
+                    </div>
+                </div>  
+            </div>
+        </form>
+        
+    </div>
+    
+    <!-- end place order section -->
+
+
+    {% endblock %}

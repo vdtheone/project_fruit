@@ -1,0 +1,226 @@
+{% extends 'tools/base.html' %} {% load static %} {% block title %} {{user}}
+{%endblock title %} {% block header %}
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    {% include "tools/header.html" %}
+    <!-- end header section -->
+  </div>
+
+  {% endblock %}
+
+  <!-- nav section -->
+
+  <!-- end nav section -->
+
+  {% block content %}
+  <!-- profile section -->
+  <section class="section-pagetop bg-gray">
+    <div class="container">
+      <h2 class="title-page">My account</h2>
+    </div>
+    <!-- container //  -->
+  </section>
+
+  <section class="section-content padding-y">
+    <div class="container">
+      <div class="row">
+        <aside class="col-md-3">
+          <nav class="list-group">
+            <a
+              class="list-group-item active"
+              href="{% url 'profile' request.user.id %}"
+            >
+              Account overview
+            </a>
+            <a
+              class="list-group-item"
+              href="{% url 'myaddress' request.user.id %}"
+            >
+              My Address
+            </a>
+            <a
+              class="list-group-item"
+              href="{% url 'mywishlist' request.user.id %}"
+            >
+              My wishlist
+            </a>
+            <!-- <a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a> -->
+            <a
+              class="list-group-item"
+              href="{% url 'myorder' request.user.id %}"
+            >
+              My Orders
+            </a>
+            <a
+              class="list-group-item"
+              href="{% url 'mysettings' request.user.id %}"
+            >
+              Settings
+            </a>
+            <a class="list-group-item" href="{% url 'logout' %}"> Log out </a>
+          </nav>
+        </aside>
+        <!-- col.// -->
+        <main class="col-md-9">
+          <article class="card mb-3">
+            <div class="card-body">
+              <figure class="icontext">
+                <div class="icon">
+                  <img
+                    class="rounded-circle img-sm border"
+                    src="{% static '/images/client-img.png' %}"
+                  />
+                </div>
+                <div class="text">
+                  <strong> Mr. {{user}} </strong> <br />
+                  <!-- <p class="mb-2"> myloginname@gmail.com  </p> 
+                                <a href="#" class="btn btn-light btn-sm">Edit</a> -->
+                </div>
+              </figure>
+              <hr />
+              <!-- <p>
+                        <i class="fa fa-map-marker text-muted"></i> &nbsp; My address:  
+                         <br>
+                        Tashkent city, Street name, Building 123, House 321 &nbsp; 
+                        <a href="#" class="btn-link"> Edit</a>
+                    </p> -->
+
+              <article class="card-group card-stat">
+                <figure class="card bg">
+                  <div class="p-3">
+                    <h4 class="title">{{ no_of_ord|length }}</h4>
+                    <span>Orders</span>
+                  </div>
+                </figure>
+                <figure class="card bg">
+                  <div class="p-3">
+                    <h4 class="title">15</h4>
+                    <span>Wishlists</span>
+                  </div>
+                </figure>
+                <!-- <figure class="card bg">
+                            <div class="p-3">
+                                 <h4 class="title">12</h4>
+                                <span>Awaiting delivery</span>
+                            </div>
+                        </figure>
+                        <figure class="card bg">
+                            <div class="p-3">
+                                 <h4 class="title">50</h4>
+                                <span>Delivered items</span>
+                            </div>
+                        </figure> -->
+              </article>
+            </div>
+            <!-- card-body .// -->
+          </article>
+          <!-- card.// -->
+
+          <article class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title mb-4">Recent orders</h5>
+
+              <div class="row">
+                {% for ord in no_of_ord %}
+                <div class="col-sm-4 contact">
+                  <figure class="itemside mb-3">
+                    <div class="aside">
+                      <img
+                        src="/{{ord.product.img}}"
+                        class="border img-sm img-thumbnail img-responsive"
+                      />
+                    </div>
+                    <figcaption class="info">
+                      <time class="text-muted"
+                        ><i class="fa fa-calendar-alt"></i>
+                        {{ ord.created_at|date:"D d M Y" }}
+                      </time>
+                      <p>{{ord.product.name}}</p>
+                      <span class="text-success">Order confirmed </span>
+                    </figcaption>
+                  </figure>
+                </div>
+                <!-- col.// -->
+                {% endfor %}
+                <!-- col.// -->
+              </div>
+              <!-- row.// -->
+
+              <a href="#" class="btn btn-outline-primary btn-block loadMore">
+                See all orders <i class="fa fa-chevron-down"></i>
+              </a>
+              <a href="" id="hide" class="btn btn-outline-primary btn-block">
+                See less <i class="fa fa-chevron-down"></i>
+              </a>
+            </div>
+            <!-- card-body .// -->
+          </article>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+          <script>
+            $(".contact").hide(); //hide all contact div
+            $("#hide").hide();
+            
+
+            const thumbnails = $(".contact");
+            console.log(thumbnails);
+            let visibleThumbnails = 0;
+
+            function showThumbnailsUntil(index) {
+              for (var i = visibleThumbnails; i <= index; i++) {
+                if (i < thumbnails.length) {
+                  thumbnails.eq(i).show(); //show contact div
+                  visibleThumbnails++;
+                }
+              }
+            }
+
+            showThumbnailsUntil(3);
+
+            $(".loadMore").on("click", function () {
+              showThumbnailsUntil(visibleThumbnails + 5);
+
+              if (visibleThumbnails === thumbnails.length) {
+                $(".loadMore").fadeOut(); //this will hide
+                //$("#hide").fadeIn(); //show
+                $("#hide").removeClass("d-none").addClass("d-block");
+              } else {
+                $(".loadMore").fadeIn(); //show
+              }
+            }); // end show more
+
+            // hide all posts
+            $("#hide").on("click", function () {
+              //get the total visible thumnails value
+              var hiding_ = visibleThumbnails;
+              //check if value is > 5
+              if (visibleThumbnails > 5) {
+                //loop to hide divs - 5
+                for (var i = hiding_; i >= hiding_ - 5; i--) {
+                  thumbnails.eq(i).hide(); //hide
+                  visibleThumbnails--; //decrement total visible value
+                }
+                $(".loadMore").fadeIn(); //show more
+                $("#hide").removeClass("d-block").addClass("d-none");
+                //$("#hide").fadeOut(); //hide
+                
+
+              }
+            });
+          </script>
+          <!-- card.// -->
+        </main>
+        <!-- col.// -->
+      </div>
+    </div>
+    <!-- container .//  -->
+  </section>
+
+  <!-- end profile section -->
+  {% endblock %}
+
+  <!-- https://bootstrap-ecommerce.com/templates/alistyle-html/page-profile-main.html -->
+</body>
