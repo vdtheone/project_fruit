@@ -100,14 +100,18 @@
                                         <button type="submit" class="btn btn-outline-dark">
                                             Buy Now
                                         </button>
-                                    <input type="button" value="Add to Basket" class="btn btn-outline-dark">
+                                    
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-outline-dark">Add to Basket</a>
+                                    <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-danger"> <i class='fa fa-heart'></i> </a>
                                 </div>
                             {% else %}
                                 <div class="buttons flex-row mt-4 gap-3">
                                     <a href="/tools/login/" class="btn btn-outline-dark">Buy Now</a>
                                     <input type="button" value="Add to Basket" class="btn btn-outline-dark">
                                 </div>
+                                
                             {% endif %}
+                            
                         </div>
                     </div>
                 </div>

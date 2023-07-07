@@ -1,0 +1,121 @@
+{% extends 'tools/base.html' %}
+{% load static %}
+
+{% block title %}{{user}}{% endblock title %}
+
+
+{% block header %}
+
+<body class="sub_page">
+    <div class="hero_area">
+        <!-- header section strats -->
+        {% include "tools/header.html" %}
+        <!-- end header section -->
+    </div>
+
+    {% endblock %}
+
+
+    <!-- nav section -->
+
+    <!-- end nav section -->
+
+
+    {% block content %}
+
+    <!-- address section -->
+
+    <section class="section-pagetop bg-gray">
+        <div class="container">
+            <h2 class="title-page">My account</h2>
+        </div> <!-- container //  -->
+    </section>
+
+    <section class="section-content padding-y">
+        <div class="container">
+
+            <div class="row">
+                {% include 'tools/profile_side_container.html' %}
+                <!-- col.// -->
+                <main class="col-md-9">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form class="row" method="post" action="  
+                            {% if myaddress.id %}
+                                {% url 'edit_address' myaddress.id %}
+                                {% else %}
+                                {% url 'add_new_address'%}
+                            {% endif %}
+                                 ">{% csrf_token %}
+                                <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Country</label>
+                                            <select name="country" id="inputState" class="form-control">
+                                                <option> Choose...</option>
+                                                <option>Uzbekistan</option>
+                                                <option>Russia</option>
+                                                <option>United States</option>
+                                                <option selected="">India</option>
+                                                <option>Afganistan</option>
+                                            </select>
+                                        </div> <!-- form-group end.// -->
+                                        <div class="form-group col-md-6">
+                                            <label>City</label>
+                                            <input type="text" name="city" class="form-control" value="{{myaddress.city}}">
+                                        </div> <!-- form-group end.// -->
+                                    </div> <!-- form-row.// -->
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Street</label>
+                                            <input type="text" name="street" class="form-control" value="{{myaddress.street}}">
+                                        </div> <!-- form-group end.// -->
+
+                                        <div class="form-group col-md-6">
+                                            <label>Building</label>
+                                            <input type="text" name="building" class="form-control" value="{{myaddress.building}}">
+                                        </div> <!-- form-group end.// -->
+                                   
+                                    </div> <!-- form-row.// -->
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Apartment</label>
+                                            <input type="text" name="apartment" class="form-control" value="{{myaddress.apartment}}">
+                                        </div> <!-- form-group end.// -->
+
+                                        <div class="form-group col-md-6">
+                                            <label>Floor</label>
+                                            <input type="text" name="floor" class="form-control" value="{{myaddress.floor}}">
+                                        </div> <!-- form-group end.// -->   
+                                    </div> <!-- form-row.// -->
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Postal code</label>
+                                            <input type="text" name="postal_code" class="form-control" value="{{myaddress.postal_code}}">
+                                        </div> <!-- form-group end.// -->
+                                        
+                                        
+                                    </div> <!-- form-row.// -->
+
+                                    <button class="btn btn-primary">Save</button>
+                                    
+                                    
+
+                                </div> 
+                                <!-- col.// -->
+                            </form>
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card .// -->
+                </main> <!-- col.// -->
+
+            </div>
+
+        </div> <!-- container .//  -->
+    </section>
+
+    <!-- end address section -->
+
+    {% endblock %}

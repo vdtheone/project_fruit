@@ -26,42 +26,14 @@
   <section class="section-content padding-y">
     <div class="container">
       <div class="row">
-        <aside class="col-md-3">
-          <nav class="list-group">
-            <a
-              class="list-group-item active"
-              href="{% url 'profile' request.user.id %}"
-            >
-              Account overview
-            </a>
-            <a
-              class="list-group-item"
-              href="{% url 'myaddress' request.user.id %}"
-            >
-              My Address
-            </a>
-            <a
-              class="list-group-item"
-              href="{% url 'mywishlist' request.user.id %}"
-            >
-              My wishlist
-            </a>
-            <!-- <a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a> -->
-            <a
-              class="list-group-item"
-              href="{% url 'myorder' request.user.id %}"
-            >
-              My Orders
-            </a>
-            <a
-              class="list-group-item"
-              href="{% url 'mysettings' request.user.id %}"
-            >
-              Settings
-            </a>
-            <a class="list-group-item" href="{% url 'logout' %}"> Log out </a>
-          </nav>
-        </aside>
+
+
+
+        {% include 'tools/profile_side_container.html' %}
+
+
+
+
         <!-- col.// -->
         <main class="col-md-9">
           <article class="card mb-3">
@@ -96,7 +68,7 @@
                 </figure>
                 <figure class="card bg">
                   <div class="p-3">
-                    <h4 class="title">15</h4>
+                    <h4 class="title">{{no_of_wished_item|length}}</h4>
                     <span>Wishlists</span>
                   </div>
                 </figure>

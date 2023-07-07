@@ -34,6 +34,29 @@
                     <input type="hidden" name="product_name" value="{{product_name}}">
                     <input type="hidden" name="price" value="{{price}}">
                     <input type="hidden" name="quantity" value="{{hidden_quantity}}">
+
+
+                    <br><h3>select address</h3>
+                    <div class="row">
+                        {% for address in myaddress %}
+                        <div class="col-sm-4">
+                            <article class="box mb-4">
+                                <input type="radio" value="{{address.id}}" name="select_address">
+
+                                <h6>{{address.country}},<br> {{address.city}}</h6>
+                                <h6>{{address.bulding}} Floor: {{address.floor}}, Aprt: {{address.apartment}} </h6>
+                                
+                                <!-- {% if address.default_add %}
+                                <a href="#" class="btn btn-secondary ">default</a>
+                                {% else %}
+                                <a href="{% url 'make_add_default' address.id %}" class="btn btn-outline-dark">Make default</a>
+                                {% endif %} -->
+                                
+                            </article>
+                        </div> 
+                        {% endfor %}<!-- col.// -->
+                    </div>
+
                     <div class="buttons mt-4 gap-3">
                         <button class="btn btn-outline-dark">Place Order</button>
                     </div>

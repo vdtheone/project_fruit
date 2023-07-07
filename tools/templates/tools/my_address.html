@@ -35,53 +35,40 @@
         <div class="container">
 
             <div class="row">
-                <aside class="col-md-3">
-                    <nav class="list-group">
-                        <a class="list-group-item" href="{% url 'profile' request.user.id %}"> Account overview </a>
-                        <a class="list-group-item active" href="{% url 'myaddress' request.user.id %}"> My Address
-                        </a>
-                        <a class="list-group-item" href="{% url 'mywishlist' request.user.id %}"> My wishlist </a>
-                        <!-- <a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a> -->
-                        <a class="list-group-item" href="{% url 'myorder' request.user.id %}"> My Orders </a>
-                        <a class="list-group-item" href="{% url 'mysettings' request.user.id %}"> Settings </a>
-                        <a class="list-group-item" href="{% url 'logout' %}"> Log out </a>
-                    </nav>
-                </aside> <!-- col.// -->
+
+
+                {% include 'tools/profile_side_container.html' %}
+                
+                <!-- col.// -->
 
                 <article class="card mb-4">
                     <div class="card-body">
                         <main class="col-md-9">
-                            <a href="#" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>
+                            <a href="{% url 'add_new_address' %}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>
 
                             <div class="row">
+                                {% for address in myaddress %}
                                 <div class="col-md-6">
                                     <article class="box mb-4">
-                                        <h6>London, United Kingdom</h6>
-                                        <p>Building: Nestone <br> Floor: 22, Aprt: 12 </p>
-                                        <a href="#" class="btn btn-outline-dark disabled"> <i class="fa fa-check"></i>
-                                            Default</a> <a href="#" class="btn btn-outline-dark"> <i
-                                                class="fa fa-pen"></i> </a> <a href="#" class="btn btn-outline-dark"> <i
-                                                class="text-danger fa fa-trash"></i> </a>
+                                        <h6>{{address.country}},<br> {{address.city}}
+                                        {{address.bulding}}<br> Floor: {{address.floor}}, Aprt: {{address.apartment}} </h6>
+
+                                        {% if address.default_add %}
+                                        <a href="#" class="btn btn-secondary ">default</a>
+                                        {% else %}
+                                        <a href="{% url 'make_add_default' address.id %}" class="btn btn-outline-dark">Make default</a>
+                                        {% endif %}
+                                        <br>
+                                        
+                                        <a href="{% url 'edit_address' address.id %}"
+                                            class="btn btn-outline-dark mt-2"> <i class="fa fa-pen"></i> </a> 
+                                            <a href="{% url 'delete_address' address.id %}"
+                                            class="btn btn-outline-dark mt-2"> <i class="text-danger fa fa-trash"></i> </a>
+
+                                            <!-- <i class="fal fa-heart"></i> -->
                                     </article>
-                                </div> <!-- col.// -->
-                                <div class="col-md-6">
-                                    <article class="box mb-4">
-                                        <h6>Tashkent, Uzbekistan</h6>
-                                        <p>Building one <br> Floor: 2, Aprt: 32 </p>
-                                        <a href="#" class="btn btn-outline-dark">Make default</a> <a href="#"
-                                            class="btn btn-outline-dark"> <i class="fa fa-pen"></i> </a> <a href="#"
-                                            class="btn btn-outline-dark"> <i class="text-danger fa fa-trash"></i> </a>
-                                    </article>
-                                </div> <!-- col.// -->
-                                <div class="col-md-6">
-                                    <article class="box mb-4">
-                                        <h6>Moscow, Russia</h6>
-                                        <p>Lenin street <br> Building A, Floor: 3, Aprt: 32 </p>
-                                        <a href="#" class="btn btn-outline-dark">Make default</a> <a href="#"
-                                            class="btn btn-outline-dark"> <i class="fa fa-pen"></i> </a> <a href="#"
-                                            class="btn btn-outline-dark"> <i class="text-danger fa fa-trash"></i> </a>
-                                    </article>
-                                </div> <!-- col.// -->
+                                </div> 
+                                {% endfor %}<!-- col.// -->
                             </div> <!-- row.// -->
 
                         </main> <!-- col.// -->

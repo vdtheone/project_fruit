@@ -1,0 +1,16 @@
+<aside class="col-md-3 mb-2">
+    <nav class="list-group">
+        <a class="list-group-item {% if 'profile' in request.path %}active{% endif %}" 
+            href="{% url 'profile'%}"> Account overview</a>
+        <a class="list-group-item {% if 'mycart' in request.path %}active{% endif %}" href="{% url 'mycart' %}"> My Cart
+        </a>
+        <a class="list-group-item {% if 'myaddress' in request.path %}active{% endif %}" href="{% url 'myaddress' %}"> My Address
+        </a>
+        <a class="list-group-item {% if 'mywishlist' in request.path %}active{% endif %}" href="{% url 'mywishlist'%}"> My wishlist
+        </a>
+        <!-- <a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a> -->
+        <a class="list-group-item {% if 'myorder' in request.path %}active{% endif %}" href="{% url 'myorder' %}"> My Orders </a>
+        <a class="list-group-item {% if 'mysettings' in request.path %}active{% endif %}" href="{% url 'mysettings' request.user.id %}"> Settings </a>
+        <a class="list-group-item {% if 'logout' in request.path %}active{% endif %}" href="{% url 'logout' %}"> Log out </a>
+    </nav>
+</aside>

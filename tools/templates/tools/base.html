@@ -40,7 +40,11 @@
     <link href="{% static 'css/style.css' %}"  rel="stylesheet" />
 
     <!-- responsive style -->
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />    
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" /> 
+
+    <!-- font awasome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">    
+
 
   <!-- end link section -->
 
@@ -86,7 +90,7 @@
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                   </li>
                 {% else %}
                   <li class="nav-item">
@@ -123,7 +127,7 @@
     <div class="container">
       <div class="info_logo">
         <h2>
-          NiNom
+          Vishal
         </h2>
       </div>
       <div class="info_contact">
